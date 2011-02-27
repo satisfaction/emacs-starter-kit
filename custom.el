@@ -53,6 +53,13 @@
             (run-hooks 'coding-hook)))
 
 (add-to-list 'load-path "~/.emacs.d/vendor/el-expectations")
+(require 'yaml-mode)
+
+
+(add-to-list 'load-path "~/.emacs.d/vendor/rpm-spec-mode")
+(autoload 'rpm-spec-mode "rpm-spec-mode.el" "RPM spec mode." t)
+(setq auto-mode-alist (append '(("\\.spec" . rpm-spec-mode))
+			       auto-mode-alist))
 
 ;;;; tab-completion configuration (hooray hippie-expand)
 (setq hippie-expand-try-functions-list (cons 'yas/hippie-try-expand hippie-expand-try-functions-list))
@@ -63,6 +70,14 @@
 ;; ssh is faster than scp for the small files I usually edit
 ;; remotely.
 (setq tramp-default-method "ssh")
+
+;;;; puppet-mode for editing puppet *.pp files
+(add-to-list 'load-path "~/.emacs.d/vendor/puppet-mode")
+(load "puppet-mode-init.el")
+(add-hook 'puppet-mode-hook
+          (lambda ()
+            (run-hooks 'coding-hook)))
+
 
 ;;;; spiffy-mode provides a few utilities
 (add-to-list 'load-path "~/.emacs.d/vendor/spiffy")
@@ -81,3 +96,4 @@
 ;;;; configuration chunks too large to just jam in here
 (require 'custom-ruby)
 (require 'custom-color-compilation)
+(require 'custom-causes)

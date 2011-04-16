@@ -97,3 +97,7 @@
 (require 'custom-ruby)
 (require 'custom-color-compilation)
 (require 'custom-causes)
+
+;;;; added cssh support
+(add-to-list 'load-path "~/.emacs.d/vendor/cssh")
+(require 'cssh)

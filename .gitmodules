@@ -1,3 +1,6 @@
 [submodule "vendor/spiffy"]
 	path = vendor/spiffy
 	url = git://github.com/smerritt/spiffy-elisp.git
+[submodule "vendor/cssh"]
+	path = vendor/cssh
+	url = https://github.com/dimitri/cssh.git

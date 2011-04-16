@@ -1,2 +1,5 @@
+(push "/usr/local/bin" exec-path)
+(setq make-backup-files nil)
+(setq-default js-indent-level 2)
 (set-default-font "Monaco-9")
 (color-theme-twilight)

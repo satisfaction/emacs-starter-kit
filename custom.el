@@ -96,8 +96,11 @@
 ;;;; configuration chunks too large to just jam in here
 (require 'custom-ruby)
 (require 'custom-color-compilation)
-(require 'custom-causes)
 
 ;;;; added cssh support
 (add-to-list 'load-path "~/.emacs.d/vendor/cssh")
 (require 'cssh)
+
+;;;; added updated magit
+(add-to-list 'load-path "~/.emacs.d/vendor/magit")
+(require 'magit)

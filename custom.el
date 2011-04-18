@@ -71,14 +71,6 @@
 ;; remotely.
 (setq tramp-default-method "ssh")
 
-;;;; puppet-mode for editing puppet *.pp files
-(add-to-list 'load-path "~/.emacs.d/vendor/puppet-mode")
-(load "puppet-mode-init.el")
-(add-hook 'puppet-mode-hook
-          (lambda ()
-            (run-hooks 'coding-hook)))
-
-
 ;;;; spiffy-mode provides a few utilities
 (add-to-list 'load-path "~/.emacs.d/vendor/spiffy")
 (setq spiffy-enable-minor-mode t)
@@ -101,6 +93,23 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/cssh")
 (require 'cssh)
 
-;;;; added updated magit
-(add-to-list 'load-path "~/.emacs.d/vendor/magit")
-(require 'magit)
+;;;; added rvm support
+(add-to-list 'load-path "~/.emacs.d/vendor/rvm")
+(require 'rvm)
+
+;;;; added egg support
+(add-to-list 'load-path "~/.emacs.d/vendor/egg")
+(require 'egg)
+
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ )

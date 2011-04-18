@@ -4,6 +4,9 @@
 [submodule "vendor/cssh"]
 	path = vendor/cssh
 	url = https://github.com/dimitri/cssh.git
-[submodule "vendor/magit"]
-	path = vendor/magit
-	url = https://github.com/philjackson/magit.git
+[submodule "vendor/rvm"]
+	path = vendor/rvm
+	url = https://github.com/senny/rvm.el.git
+[submodule "vendor/egg"]
+	path = vendor/egg
+	url = https://github.com/byplayer/egg.git

@@ -24,6 +24,7 @@
 ;; while I <square box> Unicode as much as the next guy,
 ;; I want my lambdas left alone.
 (remove-hook 'coding-hook 'pretty-lambdas)
+(remove-hook 'coding-hook 'pretty-functions)
 
 ;; just nice to have everywhere; my screen is only so wide
 (add-hook 'coding-hook (lambda () (setq tab-width 2)))
@@ -79,11 +80,12 @@
 ;;;; spiffy-textmate-mode has some good stuff, but I don't want the
 ;;;; full minor mode since it stomps all over a bunch of default keybindings
 (require 'spiffy-textmate-mode)
-(add-hook 'coding-hook
-          (lambda ()
-            (local-set-key [f5] 'spiffy-tm-grep-project)
-            (local-set-key [f8] 'spiffy-tm-open-file-in-project)
-            (local-set-key [(control x) ?4 f8] 'spiffy-tm-open-file-in-project-other-window)))
+(global-set-key [(f5)] 'spiffy-tm-grep-project)
+;; (add-hook 'coding-hook
+;;           (lambda ()
+;;             (local-set-key [f5] 'spiffy-tm-grep-project)
+;;             (local-set-key [f8] 'spiffy-tm-open-file-in-project)
+;;             (local-set-key [(control x) ?4 f8] 'spiffy-tm-open-file-in-project-other-window)))
 
 ;;;; configuration chunks too large to just jam in here
 (require 'custom-ruby)
@@ -106,7 +108,7 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- )
+ '(grep-find-ignored-directories (quote ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "log" "tmp"))))
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.

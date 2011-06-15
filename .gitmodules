@@ -10,3 +10,6 @@
 [submodule "vendor/egg"]
 	path = vendor/egg
 	url = https://github.com/byplayer/egg.git
+[submodule "vendor/liquid-mode"]
+	path = vendor/liquid-mode
+	url = https://github.com/rehanift/Emacs-Liquid.git

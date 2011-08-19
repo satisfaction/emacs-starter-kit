@@ -22,3 +22,6 @@
 [submodule "vendor/emacs-solarized.git"]
 	path = vendor/emacs-solarized
 	url = https://github.com/sellout/emacs-color-theme-solarized.git
+[submodule "vendor/rspec-mode"]
+	path = vendor/rspec-mode
+	url = https://github.com/pezra/rspec-mode.git

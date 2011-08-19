@@ -7,7 +7,9 @@
 ;; set font type and size
 (set-default-font "Monaco-9")
 ;; set new twilight theme
-(color-theme-twilight)
+(add-to-list 'load-path "~/.emacs.d/vendor/emacs-solarized")
+(require 'color-theme-solarized)
+(color-theme-solarized-dark)
 ;; C-n and C-p when the autocomplete menu is up
 (require 'auto-complete-config)
 (ac-config-default)

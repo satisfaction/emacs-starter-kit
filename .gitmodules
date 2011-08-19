@@ -19,3 +19,6 @@
 [submodule "auto-complete-etags"]
 	path = vendor/auto-complete-etags
 	url = https://github.com/emacsmirror/auto-complete-etags.git
+[submodule "vendor/emacs-solarized.git"]
+	path = vendor/emacs-solarized
+	url = https://github.com/sellout/emacs-color-theme-solarized.git

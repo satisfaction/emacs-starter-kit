@@ -22,3 +22,6 @@
 ;; rspec mode
 (add-to-list 'load-path "~/.emacs.d/vendor/rspec-mode")
 (require 'rspec-mode)
+;; rinari minor mode
+(add-to-list 'load-path "~/.emacs.d/vendor/rinari")
+(require 'rinari)

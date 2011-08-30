@@ -99,10 +99,6 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/rvm")
 (require 'rvm)
 
-;;;; added egg support
-(add-to-list 'load-path "~/.emacs.d/vendor/egg")
-(require 'egg)
-
 ;;;; add autocomplete-mode
 (add-to-list 'load-path "~/.emacs.d/vendor/auto-complete")
 (require 'auto-complete)

@@ -56,12 +56,6 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/el-expectations")
 (require 'yaml-mode)
 
-
-(add-to-list 'load-path "~/.emacs.d/vendor/rpm-spec-mode")
-(autoload 'rpm-spec-mode "rpm-spec-mode.el" "RPM spec mode." t)
-(setq auto-mode-alist (append '(("\\.spec" . rpm-spec-mode))
-			       auto-mode-alist))
-
 ;;;; tab-completion configuration (hooray hippie-expand)
 (setq hippie-expand-try-functions-list (cons 'yas/hippie-try-expand hippie-expand-try-functions-list))
 (global-set-key [(shift tab)] 'hippie-expand)

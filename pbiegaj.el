@@ -25,5 +25,5 @@
 (add-to-list 'auto-mode-alist '("spec\\.rb$" . ruby-mode))
 
 ;; rinari minor mode
-(add-to-list 'load-path "~/.emacs.d/vendor/rinari")
-(require 'rinari)
+;; (add-to-list 'load-path "~/.emacs.d/vendor/rinari")
+;; (require 'rinari)

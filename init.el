@@ -1,36 +1,66 @@
+(setq dotfiles-dir (file-name-directory (or (buffer-file-name) load-file-name)))
+(add-to-list 'load-path dotfiles-dir)
+(require 'util)
+
+;; Emacs has a built-in feature for configuring the emacs environment with a psuedo gui
+;; instead of via config files like this one. It's called Custom or "customizations" and
+;; it is horrible. Here we cause Custom's noise not to pollute our init.el:
+(setq custom-file (concat dotfiles-dir "custom.el"))
+(load custom-file 'no-error)
+
+;; packages
 (require 'package)
 (add-to-list 'package-archives
              '("elpa" . "http://tromey.com/elpa/"))
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
-
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-;; Add in your own as you wish:
-(defvar my-packages '(starter-kit starter-kit-lisp starter-kit-ruby starter-kit-js flymake flymake-ruby rainbow-mode bm)
-  "A list of packages to ensure are installed at launch.")
+;; List of (package . (lambda() setup))s to be installed for everyone
+(defun no-op () ())
+(install-and-initialize-packages
+ '(
+   (starter-kit . no-op)
+   (starter-kit-lisp . no-op)
+   (starter-kit-ruby . no-op)
+   (starter-kit-js . no-op)
+   (flymake . no-op)
+   (flymake-ruby . no-op)
+   (flymake-jshint . (lambda () (add-hook 'javascript-mode-hook (lambda () (flymake-mode t)))))
+   (rainbow-mode . no-op)
+   (bm . no-op)
+;; rspec-mode is not currently compiling (rspec-mode-1.3 from elpa on emacs 24)
+;; (rspec-mode . (lambda ()
+;;                   (require 'rspec-mode)
+;;                   (add-to-list 'auto-mode-alist '("spec\\.rb$" . ruby-mode))
+;;                   ))
+;;   )
+   )
+ )
 
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+;; auto update of modified files from the filesystem, mostly for
+;; sharing two different editors on the same machine
+(global-auto-revert-mode t)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("54d1bcf3fcf758af4812f98eb53b5d767f897442753e1aa468cfeb221f8734f9" default)))
- '(grep-find-ignored-directories (quote ("SCCS" "RCS" "CVS" "MCVS" ".svn" ".git" ".hg" ".bzr" "_MTN" "_darcs" "{arch}" "log" "tmp" "public/assets" "TAGS" "public/javascripts/i18n" "public/widget/demo")))
- '(grep-find-ignored-files (quote ("target" ".#*" "*.rbc" "*.o" "*~" "*.bin" "*.lbin" "*.so" "*.a" "*.ln" "*.blg" "*.bbl" "*.elc" "*.lof" "*.glo" "*.idx" "*.lot" "*.fmt" "*.tfm" "*.class" "*.fas" "*.lib" "*.mem" "*.x86f" "*.sparcf" "*.dfsl" "*.pfsl" "*.d64fsl" "*.p64fsl" "*.lx64fsl" "*.lx32fsl" "*.dx64fsl" "*.dx32fsl" "*.fx64fsl" "*.fx32fsl" "*.sx64fsl" "*.sx32fsl" "*.wx64fsl" "*.wx32fsl" "*.fasl" "*.ufsl" "*.fsl" "*.dxl" "*.lo" "*.la" "*.gmo" "*.mo" "*.toc" "*.aux" "*.cp" "*.fn" "*.ky" "*.pg" "*.tp" "*.vr" "*.cps" "*.fns" "*.kys" "*.pgs" "*.tps" "*.vrs" "*.pyc" "*.pyo" "*.tgz" ".TAGS")))
- '(grep-find-template "find . <X> -type f <F> | xargs grep <C> -nH -e <R>")
- '(solarized-broken-srgb t)
- '(solarized-termcolors 16))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(flymake-errline ((((class color)) (:background "#ffffd7"))))
- '(flymake-warnline ((((class color)) (:background "#0a2832")))))
+;; don't iconify on C-z when running in X
+;; or exit emacs (!) when running in Emacs.app
+(when window-system (global-unset-key "\C-z"))
+
+;; 4 Macs
+(setq mac-command-modifier 'meta)
+
+;; not sure exactly what this is for, but seems generally useful
+(push "/usr/local/bin" exec-path)
+
+;; no more backup files emacs, I got it
+(setq make-backup-files nil)
+
+;; set font type and size
+(set-default-font "Monaco-9")
+
+;; css indent
+(setq css-indent-offset 2)
+
+

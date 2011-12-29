@@ -4,28 +4,13 @@
 ;;;; line numbers on the left in a gui
 (global-linum-mode 1)
 
-;; auto update of modified files from the filesystem, mostly for
-;; sharing two different editors on the same machine
-(global-auto-revert-mode t)
-;; don't iconify on C-z when running in X
-;; or exit emacs (!) when running in Emacs.app
-(when window-system (global-unset-key "\C-z"))
-
 (setq kill-whole-line t)
 (setq confirm-kill-emacs 'yes-or-no-p)
-
-;; 4 Macs
-(setq mac-command-modifier 'meta)
 
 (add-to-list 'load-path "~/.emacs.d/vendor/emacs-color-theme-solarized")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/vendor/emacs-color-theme-solarized")
 (load-theme 'solarized-dark t)
 
-(push "/usr/local/bin" exec-path)
-;; no more backup files emacs, I got it
-(setq make-backup-files nil)
-;; set font type and size
-(set-default-font "Monaco-9")
 ;; Take all the windows in the current frame and shift them over one.
 ;; ;;
 ;; ;; With 2 windows, effectively switches their positions.
@@ -196,3 +181,4 @@
 
 (defun spiffy-make-shell-command (&rest parts)
   (mapconcat 'shell-quote-argument parts " "))
+

@@ -2,10 +2,6 @@
 ;; no more backup files emacs, I got it
 (setq make-backup-files nil)
 
-;; set the javascript indent level to the non-standard 2 spaces
-;; instead of 4
-(setq-default js-indent-level 2)
-
 ;; the default css indent level is 4; set it to 2
 (setq css-indent-offset 2)
 

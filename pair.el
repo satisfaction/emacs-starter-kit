@@ -1,1 +1,0 @@
-/Users/pair/.emacs.d/nspeed.custom.el

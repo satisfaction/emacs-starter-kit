@@ -2,7 +2,7 @@
 
 (install-and-initialize-packages
  '(
-   (deft . (lambda () (setq deft-directory "~/Dropbox/nathan_speed/notes")))
+   (deft . (lambda () (setq deft-directory "~/Dropbox/nathan_speed/notes/")))
    (pastels-on-dark-theme . no-op)
    )
  )

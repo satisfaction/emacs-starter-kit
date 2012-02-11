@@ -51,6 +51,17 @@
 ;; 4 Macs
 (setq mac-command-modifier 'meta)
 
+;; copy and paste from terminal emacs in OS X (see https://gist.github.com/267162)
+(defun copy-from-osx ()
+  (shell-command-to-string "pbpaste"))
+(defun paste-to-osx (text &optional push)
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+(setq interprogram-cut-function 'paste-to-osx)
+(setq interprogram-paste-function 'copy-from-osx)
+
 ;; not sure exactly what this is for, but seems generally useful
 (push "/usr/local/bin" exec-path)
 

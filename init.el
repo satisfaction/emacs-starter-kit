@@ -10,10 +10,11 @@
 
 ;; packages
 (require 'package)
-(add-to-list 'package-archives
-             '("elpa" . "http://tromey.com/elpa/"))
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(setq package-archives '(("elpa" . "http://tromey.com/elpa/")
+			  ("marmalade" . "http://marmalade-repo.org/packages/")
+			  ("josh" . "http://josh.github.com/elpa")
+			  ("gnu" . "http://elpa.gnu.org/packages")))
+
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -31,6 +32,35 @@
    (flymake-jshint . (lambda () (add-hook 'javascript-mode-hook (lambda () (flymake-mode t)))))
    (rainbow-mode . no-op)
    (bm . no-op)
+   (coffee-mode
+    . (lambda ()
+        (add-to-list 'auto-mode-alist '("\>coffee$" . coffee-mode))
+        (defun coffee-custom ()
+          "coffee-mode-hook"
+
+          ;; CoffeeScript uses two spaces.
+          (make-local-variable 'tab-width)
+          (set 'tab-width 2)
+
+          ;; If you don't have js2-mode
+          (setq coffee-js-mode 'javascript-mode)
+
+          ;; If you don't want your compiled files to be wrapped
+          ;;  (setq coffee-args-compile '("-c" "--bare"))
+
+          ;; *Messages* spam
+          (setq coffee-debug-mode t)
+
+          ;;  Emacs key binding
+          (define-key coffee-mode-map [(meta r)] 'coffee-compile-buffer)
+
+          ;; Compile '.coffee' files on every save
+          (and (file-exists-p (buffer-file-name))
+               (file-exists-p (coffee-compiled-file-name))
+               (coffee-cos-mode t)))
+
+        (add-hook 'coffee-mode-hook 'coffee-custom)
+        ))
 ;; rspec-mode is not currently compiling (rspec-mode-1.3 from elpa on emacs 24)
 ;; (rspec-mode . (lambda ()
 ;;                   (require 'rspec-mode)
@@ -73,5 +103,3 @@
 
 ;; css indent
 (setq css-indent-offset 2)
-
-

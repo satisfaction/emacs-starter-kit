@@ -29,7 +29,26 @@
    (starter-kit-js . no-op)
    (flymake . no-op)
    (flymake-ruby . no-op)
-   (flymake-jshint . (lambda () (add-hook 'javascript-mode-hook (lambda () (flymake-mode t)))))
+   (flymake-jshint
+    . (lambda ()
+        (add-hook 'javascript-mode-hook (lambda () (flymake-mode t)))
+        (defun flymake-display-err-message-for-current-line ()
+          "Display a message with errors/warnings for current line if it has errors and/or warnings."
+          (interactive)
+          (let* ((line-no             (flymake-current-line-no))
+                 (line-err-info-list  (nth 0 (flymake-find-err-info flymake-err-info 
+                                                                    line-no)))
+                 (menu-data           (flymake-make-err-menu-data line-no 
+                                                                  line-err-info-list)))
+            (if menu-data
+                (let ((messages))
+                  (push (concat (car menu-data) ":") messages)
+                  (dolist (error-or-warning (cadr menu-data))
+                    (push (car error-or-warning) messages))
+                  (message "%s" (mapconcat #'identity (reverse messages) "\n"))))))
+
+        (global-set-key (kbd "\C-x t") 'flymake-display-err-message-for-current-line)
+        ))
    (rainbow-mode . no-op)
    (bm . no-op)
    (coffee-mode

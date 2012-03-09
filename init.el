@@ -108,3 +108,9 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.js.erb$" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
+
+;; disable auto-fill-mode in every file
+(add-hook 'find-file-hook (lambda () (auto-fill-mode -1)))
+
+;; disable paredit-mode in every file
+(add-hook 'find-file-hook (lambda () (paredit-mode -1)))

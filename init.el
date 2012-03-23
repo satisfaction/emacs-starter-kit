@@ -83,6 +83,7 @@
 
         (add-hook 'coffee-mode-hook 'coffee-custom)
         ))
+   (smart-tab . (lambda () (global-smart-tab-mode 1)))
 ;; rspec-mode is not currently compiling (rspec-mode-1.3 from elpa on emacs 24)
 ;; (rspec-mode . (lambda ()
 ;;                   (require 'rspec-mode)

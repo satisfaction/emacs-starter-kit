@@ -16,8 +16,7 @@
 			  ("gnu" . "http://elpa.gnu.org/packages")))
 
 (package-initialize)
-(when (not package-archive-contents)
-  (package-refresh-contents))
+(when (not package-archive-contents) (package-refresh-contents))
 
 ;; List of (package . (lambda() setup))s to be installed for everyone
 (defun no-op () ())
@@ -26,7 +25,11 @@
    (starter-kit . no-op)
    (starter-kit-lisp . no-op)
    (starter-kit-ruby . no-op)
-   (starter-kit-js . no-op)
+   (starter-kit-js
+    . (lambda()
+        (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
+        (add-to-list 'auto-mode-alist '("\\.js.erb$" . js-mode))
+        (add-to-list 'auto-mode-alist '("\\.json$" . js-mode))))
    (flymake . no-op)
    (flymake-ruby . no-op)
    (flymake-jshint
@@ -122,11 +125,6 @@
 
 ;; css indent
 (setq css-indent-offset 2)
-
-;; Use js-mode
-(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
-(add-to-list 'auto-mode-alist '("\\.js.erb$" . js-mode))
-(add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
 
 ;; disable auto-fill-mode in every file
 (add-hook 'find-file-hook (lambda () (auto-fill-mode -1)))

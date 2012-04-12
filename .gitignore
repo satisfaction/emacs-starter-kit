@@ -2,7 +2,7 @@ elpa/*
 auto-save-list/*
 backups/*
 vendor/*
-url
+url/*
 .smex-items
 places
 *~

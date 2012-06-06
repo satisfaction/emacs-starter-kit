@@ -24,7 +24,8 @@
  '(
    (starter-kit . no-op)
    (starter-kit-lisp . no-op)
-   (starter-kit-ruby . no-op)
+   (starter-kit-ruby
+    . (lambda() (setq ruby-deep-indent-paren nil))) ;; normal indentation for ruby-mode
    (starter-kit-js
     . (lambda()
         (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))

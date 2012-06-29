@@ -53,7 +53,6 @@
 
         (global-set-key (kbd "\C-x t") 'flymake-display-err-message-for-current-line)
         ))
-   (rainbow-mode . no-op)
    (bm . no-op)
    (coffee-mode
     . (lambda ()

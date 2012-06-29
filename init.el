@@ -125,7 +125,7 @@
 (set-default-font "Monaco-9")
 
 ;; css indent
-(setq css-indent-offset 2)
+(setq css-indent-offset 4)
 
 ;; disable auto-fill-mode in every file
 (add-hook 'find-file-hook (lambda () (auto-fill-mode -1)))

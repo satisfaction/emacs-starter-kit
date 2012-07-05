@@ -121,9 +121,6 @@
 ;; no more backup files emacs, I got it
 (setq make-backup-files nil)
 
-;; set font type and size
-(set-default-font "Monaco-9")
-
 ;; css indent
 (setq css-indent-offset 4)
 

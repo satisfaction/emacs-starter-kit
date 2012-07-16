@@ -128,8 +128,8 @@
 ;; javascript indent
 (setq js-indent-level 4)
 
-;; disable auto-fill-mode in every file
-(add-hook 'find-file-hook (lambda () (auto-fill-mode -1)))
+;; disable auto-fill-mode in text files
+(remove-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;; remove paredit minor mode from javascript mode
 (remove-hook 'js-mode-hook 'esk-paredit-nonlisp)

@@ -54,6 +54,7 @@
         (global-set-key (kbd "\C-x t") 'flymake-display-err-message-for-current-line)
         ))
    (bm . no-op)
+   (haml-mode . no-op)
    (coffee-mode
     . (lambda ()
         (add-to-list 'auto-mode-alist '("\>coffee$" . coffee-mode))
@@ -123,6 +124,9 @@
 
 ;; css indent
 (setq css-indent-offset 4)
+
+;; javascript indent
+(setq js-indent-level 4)
 
 ;; disable auto-fill-mode in every file
 (add-hook 'find-file-hook (lambda () (auto-fill-mode -1)))

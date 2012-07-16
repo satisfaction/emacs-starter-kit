@@ -131,5 +131,5 @@
 ;; disable auto-fill-mode in every file
 (add-hook 'find-file-hook (lambda () (auto-fill-mode -1)))
 
-;; disable paredit-mode in every file
-(add-hook 'find-file-hook (lambda () (paredit-mode -1)))
+;; remove paredit minor mode from javascript mode
+(remove-hook 'js-mode-hook 'esk-paredit-nonlisp)

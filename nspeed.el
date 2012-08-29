@@ -12,3 +12,6 @@
  )
 
 (add-hook 'find-file-hook 'flymake-find-file-hook)
+(custom-set-faces
+         '(flymake-errline ((((class color)) (:background "#6E1823"))))
+          '(flymake-warnline ((((class color)) (:background "#0a2832")))))

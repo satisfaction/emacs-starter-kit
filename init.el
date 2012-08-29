@@ -14,7 +14,26 @@
 			  ("marmalade" . "http://marmalade-repo.org/packages/")
 			  ("josh" . "http://josh.github.com/elpa")
 			  ("gnu" . "http://elpa.gnu.org/packages")))
+;;;Add the following custom-set-variables to use 'lazy' modes
+(custom-set-variables
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(js3-lazy-commas t)
+ '(js3-lazy-operators t)
+ '(js3-lazy-dots t)
+ '(js3-expr-indent-offset 2)
+ '(js3-paren-indent-offset 2)
+ '(js3-square-indent-offset 2)
+ '(js3-curly-indent-offset 2)
+)
 
+(autoload 'js3-mode "js3" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js3-mode))
+(add-to-list 'auto-mode-alist '("\\.scss$" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.hamljs$" . haml-mode))
+(add-to-list 'auto-mode-alist '("\\.hbs$" . handlebars-mode))
 (package-initialize)
 (when (not package-archive-contents) (package-refresh-contents))
 
@@ -26,6 +45,11 @@
    (starter-kit-lisp . no-op)
    (starter-kit-ruby
     . (lambda() (setq ruby-deep-indent-paren nil))) ;; normal indentation for ruby-mode
+   (starter-kit-js
+    . (lambda()
+        (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
+        (add-to-list 'auto-mode-alist '("\\.js.erb$" . js-mode))
+        (add-to-list 'auto-mode-alist '("\\.json$" . js-mode))))
    (starter-kit-js
     . (lambda()
         (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
@@ -51,7 +75,7 @@
                     (push (car error-or-warning) messages))
                   (message "%s" (mapconcat #'identity (reverse messages) "\n"))))))
 
-        (global-set-key (kbd "\C-x t") 'flymake-display-err-message-for-current-line)
+        (global-set-key (kbd "C-x q") 'flymake-display-err-message-for-current-line)
         ))
    (bm . no-op)
    (haml-mode . no-op)
@@ -103,7 +127,7 @@
 (when window-system (global-unset-key "\C-z"))
 
 ;; 4 Macs
-(setq mac-command-modifier 'meta)
+(setq w32-lwindow-modifier 'meta)
 
 ;; copy and paste from terminal emacs in OS X (see https://gist.github.com/267162)
 (defun copy-from-osx ()
@@ -133,3 +157,5 @@
 
 ;; remove paredit minor mode from javascript mode
 (remove-hook 'js-mode-hook 'esk-paredit-nonlisp)
+;; disable paredit-mode in every file
+(add-hook 'find-file-hook (lambda () (paredit-mode -1)))

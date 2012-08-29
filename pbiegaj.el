@@ -63,8 +63,6 @@
     (let ((colorstr (ansi-color-apply (ad-get-arg 1))))
       (ad-set-arg 1 (font-lock-proof colorstr 0)))))
 
-
-
 (defvar *spiffy-ruby-keymap* (make-sparse-keymap) "Keybindings go in here")
 (defun spiffy-ruby-define-key (key func)
   (define-key *spiffy-ruby-keymap* key func))

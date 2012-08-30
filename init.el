@@ -55,6 +55,7 @@
         ))
    (bm . no-op)
    (haml-mode . no-op)
+   (yaml-mode .  (lambda () (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))))
    (coffee-mode
     . (lambda ()
         (add-to-list 'auto-mode-alist '("\>coffee$" . coffee-mode))
@@ -130,6 +131,7 @@
 
 ;; disable auto-fill-mode in text files
 (remove-hook 'text-mode-hook 'turn-on-auto-fill)
+(setq-default fill-column 100) ;; for comments in code
 
 ;; remove paredit minor mode from javascript mode
 (remove-hook 'js-mode-hook 'esk-paredit-nonlisp)

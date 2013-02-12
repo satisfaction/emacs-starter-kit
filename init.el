@@ -79,35 +79,6 @@
         ))
    (bm . no-op)
    (haml-mode . no-op)
-   (coffee-mode
-    . (lambda ()
-        (add-to-list 'auto-mode-alist '("\>coffee$" . coffee-mode))
-        (defun coffee-custom ()
-          "coffee-mode-hook"
-
-          ;; CoffeeScript uses two spaces.
-          (make-local-variable 'tab-width)
-          (set 'tab-width 2)
-
-          ;; If you don't have js2-mode
-          (setq coffee-js-mode 'javascript-mode)
-
-          ;; If you don't want your compiled files to be wrapped
-          ;;  (setq coffee-args-compile '("-c" "--bare"))
-
-          ;; *Messages* spam
-          (setq coffee-debug-mode t)
-
-          ;;  Emacs key binding
-          (define-key coffee-mode-map [(meta r)] 'coffee-compile-buffer)
-
-          ;; Compile '.coffee' files on every save
-          (and (file-exists-p (buffer-file-name))
-               (file-exists-p (coffee-compiled-file-name))
-               (coffee-cos-mode t)))
-
-        (add-hook 'coffee-mode-hook 'coffee-custom)
-        ))
    (smart-tab . (lambda () (global-smart-tab-mode 1)))
 ;; rspec-mode is not currently compiling (rspec-mode-1.3 from elpa on emacs 24)
 ;; (rspec-mode . (lambda ()
@@ -117,7 +88,7 @@
 ;;   )
    )
  )
-
+(setq-default coffee-tab-width 2)
 ;; auto update of modified files from the filesystem, mostly for
 ;; sharing two different editors on the same machine
 (global-auto-revert-mode t)
@@ -159,3 +130,10 @@
 (remove-hook 'js-mode-hook 'esk-paredit-nonlisp)
 ;; disable paredit-mode in every file
 (add-hook 'find-file-hook (lambda () (paredit-mode -1)))
+(require 'ess-site)
+(load-theme 'wombat)
+
+(defface hl-line '((t (:background "DarkSlateGrey")))
+ "Face to use for `hl-line-face'." :group 'hl-line)
+(setq hl-line-face 'hl-line)
+(global-hl-line-mode t) 
